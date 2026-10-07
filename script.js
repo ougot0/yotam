@@ -134,15 +134,52 @@
       var name = (card.querySelector("h3") || {}).textContent.trim();
       var size = card.querySelector(".opt-size .opt.is-active");
       var kind = card.querySelector(".opt-kind .opt.is-active");
+      var flavor = card.querySelector(".opt-flavor .opt.is-active");
       var params = new URLSearchParams({
         produit: name,
         taille: size ? (size.dataset.serves || "") : "",
         prix: size ? (size.dataset.price || "") : "",
         kind: kind ? (kind.dataset.kind || "") : "",
+        gout: flavor ? (flavor.dataset.flavor || "") : "",
         pay: size ? (size.dataset.pay || "") : ""
       });
       window.location.href = "commande.html?" + params.toString();
     });
+  });
+})();
+
+/* =========================================================
+   Cookies : le goût choisi contraint la cacherout
+   (« 3 chocolats » = halavi uniquement)
+   ========================================================= */
+(function () {
+  "use strict";
+  document.querySelectorAll(".cookie-card").forEach(function (card) {
+    var kindGroup = card.querySelector(".opt-kind");
+    var note = card.querySelector(".cookie-kosher-note");
+    if (!kindGroup) return;
+    var kindBtns = kindGroup.querySelectorAll(".opt");
+
+    function applyFlavor() {
+      var active = card.querySelector(".opt-flavor .opt.is-active");
+      var allowed = (active && active.dataset.kosher ? active.dataset.kosher : "Parvé,Halavi").split(",");
+      kindBtns.forEach(function (b) {
+        var ok = allowed.indexOf(b.dataset.kind) !== -1;
+        b.disabled = !ok;
+        b.style.display = ok ? "" : "none";
+        if (!ok) b.classList.remove("is-active");
+      });
+      if (!kindGroup.querySelector(".opt.is-active")) {
+        var first = kindGroup.querySelector(".opt:not([disabled])");
+        if (first) first.classList.add("is-active");
+      }
+      if (note) note.hidden = allowed.length > 1;
+    }
+
+    card.querySelectorAll(".opt-flavor .opt").forEach(function (f) {
+      f.addEventListener("click", applyFlavor);
+    });
+    applyFlavor();
   });
 })();
 

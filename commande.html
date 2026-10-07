@@ -120,11 +120,12 @@
     var taille  = param("taille");
     var prix    = param("prix");
     var kind    = param("kind");
+    var gout    = param("gout");
     var pay     = param("pay");
 
     document.title = "Ougot — Commander " + produit;
     document.getElementById("s-name").textContent = produit;
-    document.getElementById("s-meta").textContent = [taille, kind].filter(Boolean).join(" · ");
+    document.getElementById("s-meta").textContent = [taille, gout, kind].filter(Boolean).join(" · ");
     document.getElementById("s-price").textContent = prix ? (prix + " €") : "";
 
     function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
@@ -223,6 +224,7 @@
         "Produit": produit,
         "Taille": taille || "—",
         "Cacherout": kind || "—",
+        "Goût": gout || "—",
         "Prix": prix ? (prix + " €") : "—",
         "Mode de paiement": modePaiement,
         "Mode de récupération": recep,
