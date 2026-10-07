@@ -100,6 +100,8 @@
     var ENDPOINT = "https://formsubmit.co/ajax/ougot27@gmail.com";
 
     var KIND = { name:"kind", label:"Parvé ou halavi ?", type:"chips", options:["Parvé","Halavi"], full:true };
+    var KIND_HALAVI = { name:"kind", label:"Cacherout", type:"chips", options:["Halavi"], full:true };
+    var HALAVI_ONLY_NOTE = { type:"note", text:"🧀 Nos cake design sont réalisés <strong>uniquement en halavi</strong>." };
     var PAREVE_NOTE = { type:"note", text:"🌿 Nos plateaux et buffets sont exclusivement <strong>parvé</strong>." };
 
     var CONFIG = {
@@ -118,7 +120,8 @@
           {name:"date",label:"Date de l'événement",type:"date"},
           {name:"couleurs",label:"Couleurs / thème",type:"text",placeholder:"ex. tons pastel, thème floral…",full:true},
           {name:"message",label:"Message à écrire sur le gâteau",type:"text",placeholder:"ex. Joyeux anniversaire Sarah",full:true},
-          KIND,
+          HALAVI_ONLY_NOTE,
+          KIND_HALAVI,
           {name:"details",label:"Précisions",type:"textarea",placeholder:"Décor, étages, inspiration, contraintes… tout ce que vous imaginez.",full:true}
         ]
       },
@@ -132,7 +135,8 @@
           {name:"personnes",label:"Nombre de personnes",type:"text",placeholder:"ex. 20 personnes"},
           {name:"date",label:"Date de l'événement",type:"date"},
           {name:"deco",label:"Décoration",type:"select",options:["Fruits rouges","Chocolats & confiseries","Thème personnalisé","À définir ensemble"]},
-          KIND,
+          HALAVI_ONLY_NOTE,
+          KIND_HALAVI,
           {name:"details",label:"Décrivez votre projet",type:"textarea",placeholder:"Couleurs, parfums, thème, inspiration…",full:true}
         ]
       },
@@ -142,7 +146,7 @@
         intro:"Un assortiment de nos cinq pâtisseries signature en portions individuelles. Indiquez la taille et vos précisions.",
         subject:"🍰 Devis Plateau dessert — Ougot",
         fields:[
-          {name:"taille",label:"Taille du plateau",type:"select",options:["10 personnes — 45 pièces — 90 €","20 personnes — 90 pièces — 180 €","30 personnes — 135 pièces — 270 €"]},
+          {name:"taille",label:"Taille du plateau",type:"select",options:["5 personnes — 25 pièces — 45 €","10 personnes — 45 pièces — 90 €","20 personnes — 90 pièces — 180 €","30 personnes — 135 pièces — 270 €"]},
           {name:"date",label:"Date souhaitée",type:"date"},
           {name:"livraison",label:"Livraison ou à emporter ?",type:"select",options:["À emporter","Livraison (Levallois & environs)"]},
           PAREVE_NOTE,
