@@ -96,8 +96,9 @@
 
 /* =========================================================
    Gâteaux : sélection (taille + pareve/halavi) -> page de commande
+   Appelé par sc-render.js APRÈS le rendu des produits.
    ========================================================= */
-(function () {
+window.SC_initProducts = function () {
   "use strict";
 
   // Met à jour le prix affiché selon la taille choisie
@@ -109,6 +110,7 @@
 
   // Rappel du délai de 6 jours sur chaque carte gâteau
   document.querySelectorAll(".cake .cake-actions").forEach(function (actions) {
+    if (actions.parentNode.querySelector(".cake-delay")) return;
     var p = document.createElement("p");
     p.className = "cake-delay";
     p.innerHTML = "🗓️ À commander au moins <strong>6 jours</strong> à l'avance";
@@ -117,6 +119,8 @@
 
   // Boutons d'option (taille / pareve-halavi)
   document.querySelectorAll(".cake .opt-group").forEach(function (group) {
+    if (group.dataset.scBound) return;
+    group.dataset.scBound = "1";
     group.querySelectorAll(".opt").forEach(function (opt) {
       opt.addEventListener("click", function () {
         group.querySelectorAll(".opt").forEach(function (o) { o.classList.remove("is-active"); });
@@ -128,6 +132,8 @@
 
   // Bouton « Commander » -> page de commande avec la sélection
   document.querySelectorAll(".cake .cake-order").forEach(function (btn) {
+    if (btn.dataset.scBound) return;
+    btn.dataset.scBound = "1";
     btn.addEventListener("click", function () {
       var card = btn.closest(".cake");
       if (!card) return;
@@ -146,15 +152,18 @@
       window.location.href = "commande.html?" + params.toString();
     });
   });
-})();
+};
 
 /* =========================================================
    Cookies : le goût choisi contraint la cacherout
    (« 3 chocolats » = halavi uniquement)
+   Appelé par sc-render.js APRÈS le rendu.
    ========================================================= */
-(function () {
+window.SC_initCookies = function () {
   "use strict";
   document.querySelectorAll(".cookie-card").forEach(function (card) {
+    if (card.dataset.scCookieBound) return;
+    card.dataset.scCookieBound = "1";
     var kindGroup = card.querySelector(".opt-kind");
     var note = card.querySelector(".cookie-kosher-note");
     if (!kindGroup) return;
@@ -181,7 +190,7 @@
     });
     applyFlavor();
   });
-})();
+};
 
 /* =========================================================
    Devis rapide (pied de page) → e-mail à Ougot

@@ -1,0 +1,139 @@
+{
+  "_comment": "Fichier de contenu editable par Simple Commerce. Chaque produit a un id stable. 'masque': true cache le produit sans le supprimer. Les prix sont du texte (en euros).",
+  "gateaux": [
+    {
+      "id": "fraisier",
+      "nom": "Fraisier",
+      "description": "Génoise moelleuse, chantilly vanille et fraises fraîches. Un incontournable de la saison.",
+      "image": "assets/images/creations/fraisier.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "45", "pay": "https://buy.stripe.com/dRm8wPe2r5ID0OE06k18c01" },
+        { "serves": "10 à 12 pers.", "prix": "65", "pay": "https://buy.stripe.com/6oU28r8I73AveFu2es18c0b" }
+      ]
+    },
+    {
+      "id": "tarte-fraises",
+      "nom": "Tarte aux fraises",
+      "description": "Pâte sablée, crème onctueuse et fraises fraîches glacées, généreusement garnie.",
+      "image": "assets/images/creations/tarte-fraises.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "45", "pay": "https://buy.stripe.com/fZudR98I7fjdcxm2es18c06" },
+        { "serves": "10 à 12 pers.", "prix": "65", "pay": "https://buy.stripe.com/6oU9ATf6vc711SIg5i18c0g" }
+      ]
+    },
+    {
+      "id": "royal-chocolat",
+      "nom": "Royal au chocolat",
+      "description": "Dacquoise, croustillant praliné et mousse au chocolat noir. L'élégance intemporelle.",
+      "image": "assets/images/creations/royal-chocolat.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "45", "pay": "https://buy.stripe.com/7sYcN5cYn9YTbti8CQ18c00" },
+        { "serves": "10 à 12 pers.", "prix": "65", "pay": "https://buy.stripe.com/5kQ28raQf0ojdBq8CQ18c0a" }
+      ]
+    },
+    {
+      "id": "paris-brest",
+      "nom": "Paris-Brest",
+      "description": "Couronne de pâte à choux, crème mousseline au praliné et noisettes torréfiées.",
+      "image": "assets/images/creations/paris-brest.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "40", "pay": "https://buy.stripe.com/fZu5kD2jJ6MH40Q1ao18c02" },
+        { "serves": "10 à 12 pers.", "prix": "60", "pay": "https://buy.stripe.com/fZu9ATcYn0oj7d21ao18c0c" }
+      ]
+    },
+    {
+      "id": "tarte-citron",
+      "nom": "Tarte au citron",
+      "description": "Crème de citron acidulée et meringue légèrement flambée. Fraîcheur et gourmandise.",
+      "image": "assets/images/creations/tarte-citron.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "40", "pay": "https://buy.stripe.com/6oUbJ1aQf4EzfJy1ao18c03" },
+        { "serves": "10 à 12 pers.", "prix": "60", "pay": "https://buy.stripe.com/dRm4gz6zZ3Av40Q7yM18c0d" }
+      ]
+    },
+    {
+      "id": "pavlova",
+      "nom": "Pavlova",
+      "description": "Meringue croquante, chantilly vanille et fruits frais de saison. Aérienne et colorée.",
+      "image": "assets/images/creations/pavlova.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "40", "pay": "https://buy.stripe.com/fZu14n1fFfjd9ladXa18c04" },
+        { "serves": "10 à 12 pers.", "prix": "60", "pay": "https://buy.stripe.com/aFa4gzcYn1sn40Q8CQ18c0e" }
+      ]
+    },
+    {
+      "id": "mille-feuille",
+      "nom": "Mille-feuille",
+      "description": "Feuilletage caramélisé et crème pâtissière à la vanille. Le croustillant à l'état pur.",
+      "image": "assets/images/creations/mille-feuille.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "40", "pay": "https://buy.stripe.com/3cI8wP5vVc71dBqg5i18c05" },
+        { "serves": "10 à 12 pers.", "prix": "60", "pay": "https://buy.stripe.com/cNi4gz4rR7QL9la6uI18c0f" }
+      ]
+    },
+    {
+      "id": "tiramisu",
+      "nom": "Tiramisu",
+      "description": "Biscuits imbibés de café, crème onctueuse au mascarpone et voile de cacao. Le grand classique italien.",
+      "image": "assets/images/creations/tiramisu.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "40", "pay": "" },
+        { "serves": "10 à 12 pers.", "prix": "60", "pay": "" }
+      ]
+    },
+    {
+      "id": "roule-fraise",
+      "nom": "Roulé confiture de fraise",
+      "description": "Génoise roulée moelleuse, garnie d'une généreuse confiture de fraises maison.",
+      "image": "assets/images/creations/roule-fraise.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 pers.", "prix": "35", "pay": "" },
+        { "serves": "10 à 12 pers.", "prix": "55", "pay": "" }
+      ]
+    }
+  ],
+  "cookies": {
+    "id": "cookies",
+    "nom": "Cookies",
+    "description": "Nos cookies généreux et fondants, faits maison, vendus en boîte. Choisissez votre goût.",
+    "image": "assets/images/creations/cookies.jpg",
+    "masque": false,
+    "formats": [
+      { "label": "Boîte de 10", "prix": "30" },
+      { "label": "Boîte de 20", "prix": "60" }
+    ],
+    "gouts": [
+      { "nom": "Praliné amande-noisette", "cacherout": ["Parvé", "Halavi"] },
+      { "nom": "3 chocolats", "cacherout": ["Halavi"] }
+    ]
+  },
+  "plateaux": {
+    "titre": "Plateaux desserts",
+    "intro": "Un assortiment généreux de nos pâtisseries phares, réparties en portions individuelles pour régaler tous vos convives.",
+    "image": "assets/images/creations/plateau-desserts.jpg",
+    "tarifs": [
+      { "id": "plateau-5", "personnes": "Plateau 5 personnes", "pieces": "25 pièces", "prix": "45" },
+      { "id": "plateau-10", "personnes": "Plateau 10 personnes", "pieces": "45 pièces", "prix": "90" },
+      { "id": "plateau-20", "personnes": "Plateau 20 personnes", "pieces": "90 pièces", "prix": "180" },
+      { "id": "plateau-30", "personnes": "Plateau 30 personnes", "pieces": "135 pièces", "prix": "270" }
+    ]
+  }
+}

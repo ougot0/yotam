@@ -92,7 +92,7 @@
           <p class="lead-notice">🗓️ Commande à passer <strong>au moins 6 jours à l'avance</strong> · 🚚 Livraison ou à emporter · 🌿 Parvé ou halavi sur demande</p>
         </div>
 
-        <div class="menu-grid">
+        <div class="menu-grid" id="sc-gateaux">
           <article class="cake reveal">
             <div class="cake-media"><img src="assets/images/creations/fraisier.jpg" alt="Fraisier — chantilly vanille et fraises" loading="lazy" /></div>
             <div class="cake-body">
@@ -374,7 +374,7 @@
         </div>
 
         <div class="platter-showcase reveal">
-          <img src="assets/images/creations/plateau-desserts.jpg" alt="Plateau desserts Ougot : Paris-Brest, palet breton framboise, entremet vanille, tarte au chocolat, choux citron meringué" loading="lazy" />
+          <img id="sc-plateau-img" src="assets/images/creations/plateau-desserts.jpg" alt="Plateau desserts Ougot : Paris-Brest, palet breton framboise, entremet vanille, tarte au chocolat, choux citron meringué" loading="lazy" />
         </div>
 
         <div class="platters-grid reveal">
@@ -393,7 +393,7 @@
 
           <div class="platter-pricing">
             <h3 class="subhead">Nos tarifs</h3>
-            <div class="pricing-card">
+            <div class="pricing-card" id="sc-plateau-tarifs">
               <div class="pricing-row"><span>Plateau 5 personnes<em>25 pièces</em></span><strong>45&nbsp;€</strong></div>
               <div class="pricing-row"><span>Plateau 10 personnes<em>45 pièces</em></span><strong>90&nbsp;€</strong></div>
               <div class="pricing-row"><span>Plateau 20 personnes<em>90 pièces</em></span><strong>180&nbsp;€</strong></div>
@@ -582,6 +582,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="sc-render.js"></script>
   <script src="status.js"></script>
 </body>
 </html>
