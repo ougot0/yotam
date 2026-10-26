@@ -1,0 +1,34 @@
+name: Déploiement OVH
+
+# Se déclenche à chaque modification poussée sur la branche du site,
+# ou manuellement depuis l'onglet « Actions » de GitHub.
+on:
+  push:
+    branches:
+      - claude/website-creation-of13vb
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer les fichiers
+        uses: actions/checkout@v4
+
+      - name: Envoyer sur OVH (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.cluster131.hosting.ovh.net
+          username: coumaoq
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          # Dossier du site Ougot sur le serveur (pas www = coumaoo)
+          server-dir: ougot/
+          # Fichiers à NE PAS envoyer
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            README.md
+            images/simplecommerce/**
