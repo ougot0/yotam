@@ -1004,3 +1004,7 @@ p { margin: 0 0 1rem; }
   background: #8a3b2e; color: #fff; font-size: .68rem; font-weight: 600;
   letter-spacing: .08em; text-transform: uppercase; padding: .32rem .62rem; border-radius: 999px;
 }
+
+/* Galerie plateaux (centrée, miniatures un peu plus grandes) */
+.plateau-thumbs { justify-content: center; margin-top: .7rem; }
+.plateau-thumbs .cake-thumb { width: 58px; height: 58px; }

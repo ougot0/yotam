@@ -143,6 +143,7 @@
     "titre": "Plateaux desserts",
     "intro": "Un assortiment généreux de nos pâtisseries phares, réparties en portions individuelles pour régaler tous vos convives.",
     "image": "assets/images/creations/plateau-desserts.jpg",
+    "images": ["assets/images/creations/plateau-desserts.jpg", "assets/images/creations/plateau-desserts-2.jpg", "assets/images/creations/plateau-desserts-3.jpg"],
     "tarifs": [
       { "id": "plateau-5", "personnes": "Plateau 5 personnes", "pieces": "25 pièces", "prix": "45" },
       { "id": "plateau-10", "personnes": "Plateau 10 personnes", "pieces": "45 pièces", "prix": "90" },

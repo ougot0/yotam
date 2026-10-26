@@ -107,7 +107,29 @@
     if (data.plateaux) {
       var pl = data.plateaux;
       var showcase = document.getElementById("sc-plateau-img");
-      if (showcase && pl.image) showcase.src = pl.image;
+      var plImgs = (pl.images && pl.images.length) ? pl.images : (pl.image ? [pl.image] : []);
+      if (showcase && plImgs.length) {
+        showcase.src = plImgs[0];
+        if (plImgs.length > 1) {
+          var host = showcase.parentNode;
+          var oldtw = host.querySelector(".plateau-thumbs");
+          if (oldtw) oldtw.remove();
+          var tw = document.createElement("div");
+          tw.className = "cake-thumbs plateau-thumbs";
+          plImgs.forEach(function (u, i) {
+            var t = document.createElement("img");
+            t.className = "cake-thumb" + (i === 0 ? " is-active" : "");
+            t.src = u; t.alt = ""; t.loading = "lazy";
+            t.addEventListener("click", function () {
+              showcase.src = u;
+              tw.querySelectorAll(".cake-thumb").forEach(function (o) { o.classList.remove("is-active"); });
+              t.classList.add("is-active");
+            });
+            tw.appendChild(t);
+          });
+          host.appendChild(tw);
+        }
+      }
       var intro = document.getElementById("sc-plateau-intro");
       if (intro && pl.intro) intro.textContent = pl.intro;
       var card = document.getElementById("sc-plateau-tarifs");
