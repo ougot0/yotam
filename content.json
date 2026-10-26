@@ -108,6 +108,18 @@
         { "serves": "6 pers.", "prix": "35", "pay": "" },
         { "serves": "10 à 12 pers.", "prix": "55", "pay": "" }
       ]
+    },
+    {
+      "id": "tarte-pomme",
+      "nom": "Tarte pomme by Ougot",
+      "description": "Palet breton, compote de pomme miel-romarin-menthe, pomme tatin et chantilly vanille.",
+      "image": "assets/images/creations/tarte-pomme.jpg",
+      "masque": false,
+      "cacherout": ["Parvé", "Halavi"],
+      "tailles": [
+        { "serves": "6 à 8 pers.", "prix": "45", "pay": "" },
+        { "serves": "10 à 12 pers.", "prix": "65", "pay": "" }
+      ]
     }
   ],
   "cookies": {
