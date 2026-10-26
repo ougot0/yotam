@@ -25,6 +25,8 @@ jobs:
             --exclude='README.md' \
             --exclude='images/simplecommerce' \
             ./ _deploy/
+          # Anti-cache : remplace __BUILD__ par le hash du commit (force le rechargement)
+          find _deploy -maxdepth 1 -name '*.html' -exec sed -i "s/__BUILD__/${GITHUB_SHA::7}/g" {} +
 
       - name: Envoyer sur OVH (SFTP)
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
