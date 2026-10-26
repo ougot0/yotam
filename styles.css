@@ -1008,3 +1008,7 @@ p { margin: 0 0 1rem; }
 /* Galerie plateaux (centrée, miniatures un peu plus grandes) */
 .plateau-thumbs { justify-content: center; margin-top: .7rem; }
 .plateau-thumbs .cake-thumb { width: 58px; height: 58px; }
+
+/* Galerie section "Pièces d'exception" */
+.feature-thumbs { margin-top: .6rem; justify-content: flex-start; }
+.feature-thumbs .cake-thumb { width: 60px; height: 60px; aspect-ratio: auto; object-fit: cover; }

@@ -277,3 +277,25 @@ window.SC_initCookies = function () {
     }
   });
 })();
+
+/* =========================================================
+   Galerie "Pièces d'exception" (Number Cake, Layer Cake…)
+   — photos statiques dans index.html (hors content.json)
+   ========================================================= */
+(function () {
+  "use strict";
+  function wire() {
+    document.querySelectorAll(".feature-thumbs").forEach(function (tw) {
+      var main = tw.parentNode.querySelector("img:not(.cake-thumb)");
+      tw.querySelectorAll(".cake-thumb").forEach(function (t) {
+        t.addEventListener("click", function () {
+          if (main) main.src = t.src;
+          tw.querySelectorAll(".cake-thumb").forEach(function (o) { o.classList.remove("is-active"); });
+          t.classList.add("is-active");
+        });
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
