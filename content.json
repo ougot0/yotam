@@ -7,6 +7,7 @@
       "description": "Génoise moelleuse, chantilly vanille et fraises fraîches. Un incontournable de la saison.",
       "image": "assets/images/creations/fraisier.jpg",
       "masque": false,
+      "disponible": false,
       "cacherout": ["Parvé", "Halavi"],
       "tailles": [
         { "serves": "6 à 8 pers.", "prix": "45", "pay": "https://buy.stripe.com/dRm8wPe2r5ID0OE06k18c01" },

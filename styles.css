@@ -994,3 +994,13 @@ p { margin: 0 0 1rem; }
   cursor: pointer; border: 2px solid transparent; transition: border-color .15s ease;
 }
 .cake-thumb.is-active, .cake-thumb:hover { border-color: #b08b5a; }
+
+/* Produit indisponible */
+.cake-media { position: relative; }
+.cake.is-unavailable .cake-media img { filter: grayscale(.45) brightness(.97); }
+.cake.is-unavailable .price { opacity: .5; }
+.cake-badge {
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  background: #8a3b2e; color: #fff; font-size: .68rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; padding: .32rem .62rem; border-radius: 999px;
+}

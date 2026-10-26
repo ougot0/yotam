@@ -20,8 +20,9 @@
     var first = tailles[0] || {};
     var kinds = p.cacherout && p.cacherout.length ? p.cacherout : ["Parvé", "Halavi"];
     var imgs = (p.images && p.images.length) ? p.images : [p.image];
-    var html = '<article class="cake reveal is-visible" data-sc-id="' + esc(p.id) + '">';
-    html += '<div class="cake-media"><img src="' + esc(imgs[0]) + '" alt="' + esc(p.nom) + '" loading="lazy" /></div>';
+    var avail = p.disponible !== false;
+    var html = '<article class="cake reveal is-visible' + (avail ? "" : " is-unavailable") + '" data-sc-id="' + esc(p.id) + '">';
+    html += '<div class="cake-media">' + (avail ? "" : '<span class="cake-badge">Indisponible</span>') + '<img src="' + esc(imgs[0]) + '" alt="' + esc(p.nom) + '" loading="lazy" /></div>';
     html += '<div class="cake-body">';
     if (imgs.length > 1) {
       html += '<div class="cake-thumbs">';
@@ -46,7 +47,9 @@
       html += '<button type="button" class="opt' + (i === 0 ? " is-active" : "") + '" data-kind="' + esc(k) + '">' + esc(k) + '</button>';
     });
     html += '</div></div>';
-    html += '<div class="cake-actions"><button type="button" class="btn btn-dark btn-block cake-order">Commander</button></div>';
+    html += '<div class="cake-actions">' + (avail
+      ? '<button type="button" class="btn btn-dark btn-block cake-order">Commander</button>'
+      : '<button type="button" class="btn btn-block" disabled aria-disabled="true" style="opacity:.55;cursor:not-allowed;">Indisponible</button>') + '</div>';
     html += '</div></article>';
     return html;
   }
