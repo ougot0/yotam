@@ -15,20 +15,24 @@ jobs:
       - name: Récupérer les fichiers
         uses: actions/checkout@v4
 
-      - name: Envoyer sur OVH (FTPS)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Préparer le dossier à envoyer (sans fichiers techniques)
+        run: |
+          mkdir -p _deploy
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='_deploy' \
+            --exclude='README.md' \
+            --exclude='images/simplecommerce' \
+            ./ _deploy/
+
+      - name: Envoyer sur OVH (SFTP)
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ftp.cluster131.hosting.ovh.net
           username: coumaoq
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          # Dossier du site Ougot sur le serveur (pas www = coumaoo)
-          server-dir: ougot/
-          # Fichiers à NE PAS envoyer
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            README.md
-            images/simplecommerce/**
+          port: 22
+          local_path: './_deploy/*'
+          remote_path: '/home/coumaoq/ougot'
+          sftp_only: true
