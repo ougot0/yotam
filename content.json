@@ -114,6 +114,7 @@
       "nom": "Tarte pomme by Ougot",
       "description": "Palet breton, compote de pomme miel-romarin-menthe, pomme tatin et chantilly vanille.",
       "image": "assets/images/creations/tarte-pomme.jpg",
+      "images": ["assets/images/creations/tarte-pomme.jpg", "assets/images/creations/tarte-pomme-2.jpg"],
       "masque": false,
       "cacherout": ["Parvé", "Halavi"],
       "tailles": [

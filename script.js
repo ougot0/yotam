@@ -152,6 +152,21 @@ window.SC_initProducts = function () {
       window.location.href = "commande.html?" + params.toString();
     });
   });
+
+  // Galerie : clic sur une miniature -> change la grande photo
+  document.querySelectorAll(".cake-thumbs").forEach(function (tw) {
+    if (tw.dataset.scBound) return;
+    tw.dataset.scBound = "1";
+    var card = tw.closest(".cake");
+    var main = card ? card.querySelector(".cake-media img") : null;
+    tw.querySelectorAll(".cake-thumb").forEach(function (t) {
+      t.addEventListener("click", function () {
+        if (main) main.src = t.src;
+        tw.querySelectorAll(".cake-thumb").forEach(function (o) { o.classList.remove("is-active"); });
+        t.classList.add("is-active");
+      });
+    });
+  });
 };
 
 /* =========================================================

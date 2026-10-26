@@ -19,9 +19,17 @@
     var tailles = p.tailles || [];
     var first = tailles[0] || {};
     var kinds = p.cacherout && p.cacherout.length ? p.cacherout : ["Parvé", "Halavi"];
+    var imgs = (p.images && p.images.length) ? p.images : [p.image];
     var html = '<article class="cake reveal is-visible" data-sc-id="' + esc(p.id) + '">';
-    html += '<div class="cake-media"><img src="' + esc(p.image) + '" alt="' + esc(p.nom) + '" loading="lazy" /></div>';
+    html += '<div class="cake-media"><img src="' + esc(imgs[0]) + '" alt="' + esc(p.nom) + '" loading="lazy" /></div>';
     html += '<div class="cake-body">';
+    if (imgs.length > 1) {
+      html += '<div class="cake-thumbs">';
+      imgs.forEach(function (u, i) {
+        html += '<img class="cake-thumb' + (i === 0 ? " is-active" : "") + '" src="' + esc(u) + '" alt="" loading="lazy" />';
+      });
+      html += '</div>';
+    }
     html += '<div class="cake-head"><h3>' + esc(p.nom) + '</h3><span class="price">' + esc(first.prix) + '&nbsp;€</span></div>';
     html += '<p class="cake-desc">' + esc(p.description) + '</p>';
     html += '<div class="cake-options">';

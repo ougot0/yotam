@@ -986,3 +986,11 @@ p { margin: 0 0 1rem; }
 /* Panier : action de paiement par article */
 .ci-pay { grid-column: 1; justify-self: start; margin-top: .5rem; }
 .ci-devis { grid-column: 1; margin-top: .5rem; font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; color: var(--gold); }
+
+/* Galerie miniatures (produits avec plusieurs photos) */
+.cake-thumbs { display: flex; gap: .45rem; margin: 0 0 .7rem; }
+.cake-thumb {
+  width: 46px; height: 46px; object-fit: cover; border-radius: 6px;
+  cursor: pointer; border: 2px solid transparent; transition: border-color .15s ease;
+}
+.cake-thumb.is-active, .cake-thumb:hover { border-color: #b08b5a; }
