@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ougot — Beignets de Hanouka</title>
+  <meta name="description" content="Composez votre boîte de beignets de Hanouka Ougot : sucre, Nutella, confiture, pomme — parvé ou halavi. Commande au moins 5 jours à l'avance." />
+  <meta name="theme-color" content="#3b473e" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    :root{
+      --cream:#f7f2ea; --soft:#faf6ef; --cream-deep:#efe7d8; --cream-soft:#f7f2ea;
+      --green:#3b473e; --green-dark:#2f382f; --ink:#2b2b28; --muted:#6f6a61;
+      --gold:#b08b5a; --line:#e3d9c8;
+      --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      --radius:8px; --ease:cubic-bezier(.22,.61,.36,1); --shadow:0 18px 44px rgba(43,43,40,.12);
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:var(--sans);color:var(--ink);
+      background:radial-gradient(ellipse at 70% -10%,rgba(176,139,90,.12),transparent 55%),linear-gradient(180deg,var(--soft),var(--cream));
+      min-height:100vh;}
+    a{color:inherit;text-decoration:none;}
+    .topbar{max-width:780px;margin:0 auto;padding:22px 24px 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+    .brand{display:flex;align-items:center;gap:.55rem;}
+    .brand img{width:34px;height:34px;}
+    .brand span{font-family:var(--serif);font-size:1.6rem;color:var(--green);font-weight:600;}
+    .back{font-size:.85rem;color:var(--muted);display:inline-flex;align-items:center;gap:.35rem;}
+    .back:hover{color:var(--green);}
+    .wrap{max-width:780px;margin:0 auto;padding:22px 24px 60px;}
+    .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:clamp(20px,4vw,38px);}
+    .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--gold);font-weight:600;margin:0 0 .5rem;}
+    h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.1;margin:0 0 .6rem;color:var(--ink);}
+    .intro{color:var(--muted);margin:0 0 1.2rem;line-height:1.55;}
+
+    /* Carrousel */
+    .carousel{position:relative;border-radius:14px;overflow:hidden;background:var(--cream-deep);margin:0 0 1.5rem;}
+    .carousel-track{display:flex;transition:transform .35s var(--ease);}
+    .carousel-track img{min-width:100%;width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
+    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:none;border-radius:50%;
+      background:rgba(255,255,255,.85);color:var(--green);font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 2px 10px rgba(0,0,0,.15);}
+    .carousel-btn:hover{background:#fff;}
+    .carousel-prev{left:10px;} .carousel-next{right:10px;}
+    .carousel-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:.4rem;}
+    .carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.6);border:none;cursor:pointer;padding:0;}
+    .carousel-dot.is-active{background:#fff;width:22px;border-radius:5px;}
+
+    .prices{display:flex;flex-wrap:wrap;gap:.6rem;margin:0 0 1.2rem;}
+    .price-tag{background:var(--cream-deep);border-radius:999px;padding:.45rem .9rem;font-size:.9rem;}
+    .price-tag strong{color:var(--green);}
+    .same{font-size:.85rem;color:var(--muted);margin:0 0 1.4rem;}
+
+    .section-t{font-family:var(--serif);font-size:1.35rem;color:var(--green);font-weight:600;margin:1.6rem 0 .3rem;}
+    .hint{font-size:.85rem;color:var(--muted);margin:0 0 .8rem;}
+
+    .sizes{display:flex;flex-wrap:wrap;gap:.6rem;}
+    .size-opt{cursor:pointer;padding:.7rem 1.3rem;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-size:.95rem;font-weight:500;transition:all .18s var(--ease);}
+    .size-opt.is-active{background:var(--gold);border-color:var(--gold);color:#fff;}
+    #autre-wrap{margin-top:.8rem;}
+    #autre-wrap[hidden]{display:none;}
+    #autre-qty{width:120px;font-family:var(--sans);font-size:1rem;padding:.6rem .8rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--soft);}
+
+    .flavors{display:grid;gap:.7rem;margin-top:.4rem;}
+    .flavor{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;}
+    .flavor-name{font-weight:500;}
+    .flavor-name small{display:block;color:var(--muted);font-weight:400;font-size:.82rem;}
+    .stepper{display:flex;align-items:center;gap:.6rem;}
+    .step-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:1.3rem;line-height:1;cursor:pointer;color:var(--green);display:flex;align-items:center;justify-content:center;}
+    .step-btn:disabled{opacity:.35;cursor:default;}
+    .step-val{min-width:1.6rem;text-align:center;font-weight:600;font-size:1.05rem;}
+
+    .repartition{margin:1rem 0 0;padding:.8rem 1rem;border-radius:var(--radius);font-size:.95rem;text-align:center;font-weight:500;}
+    .repartition.ok{background:#e8efe6;color:var(--green-dark);}
+    .repartition.todo{background:#fcf3e3;color:#8a6d3b;}
+    .repartition.none{background:var(--cream-deep);color:var(--muted);}
+
+    .total-box{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:1.4rem 0;padding:1rem 1.2rem;background:var(--green);color:var(--cream-soft);border-radius:12px;}
+    .total-box span{font-size:.95rem;letter-spacing:.03em;}
+    .total-box strong{font-family:var(--serif);font-size:1.9rem;}
+
+    .chips{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .chips input{position:absolute;opacity:0;pointer-events:none;}
+    .chips label{cursor:pointer;padding:.55rem 1.1rem;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-size:.9rem;transition:all .18s var(--ease);}
+    .chips input:checked + label{background:var(--gold);border-color:var(--gold);color:#fff;}
+
+    form.infos{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.1rem;margin-top:.4rem;}
+    .field{display:flex;flex-direction:column;gap:.4rem;}
+    .field.full{grid-column:1 / -1;}
+    label.lbl{font-size:.82rem;font-weight:500;}
+    label .req{color:var(--gold);}
+    input,select,textarea{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);padding:.8rem .9rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--soft);}
+    textarea{resize:vertical;min-height:80px;}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(176,139,90,.15);}
+    .note{grid-column:1 / -1;font-size:.85rem;color:var(--muted);background:var(--cream-deep);border-radius:var(--radius);padding:.75rem 1rem;margin:0;}
+    .delay{font-size:.88rem;color:var(--green);background:rgba(176,139,90,.12);border:1px solid rgba(176,139,90,.3);border-radius:var(--radius);padding:.6rem .9rem;margin:1rem 0 .2rem;text-align:center;}
+    button.send{grid-column:1 / -1;width:100%;border:none;cursor:pointer;font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:1rem;border-radius:var(--radius);background:var(--green);color:var(--cream-soft);transition:all .2s ease;margin-top:.3rem;}
+    button.send:hover{background:var(--green-dark);}
+    button.send:disabled{opacity:.5;cursor:default;}
+    .msg{grid-column:1 / -1;font-size:.92rem;line-height:1.5;margin:.2rem 0 0;padding:.9rem 1rem;border-radius:var(--radius);}
+    .msg.ok{background:#e8efe6;color:var(--green-dark);}
+    .msg.err{background:#f7e7e4;color:#8a3b2e;}
+    .foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:1.4rem;}
+    .foot a{color:var(--green);font-weight:500;}
+    [hidden]{display:none!important;}
+    @media(max-width:560px){form.infos{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a class="brand" href="index.html" aria-label="Ougot — accueil">
+      <img src="assets/images/logo.svg" alt="" />
+      <span>Ougot</span>
+    </a>
+    <a class="back" href="index.html#creations">← Retour</a>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">Spécial Hanouka</p>
+      <h1>Composez votre boîte de beignets</h1>
+      <p class="intro">Nos beignets de Hanouka, faits maison. Choisissez la quantité, répartissez vos parfums, et nous préparons votre boîte sur mesure.</p>
+
+      <!-- Carrousel -->
+      <div class="carousel" id="carousel">
+        <div class="carousel-track" id="carousel-track">
+          <img src="assets/images/creations/beignet-1.jpg?v=__BUILD__" alt="Beignets de Hanouka Ougot" loading="lazy" />
+          <img src="assets/images/creations/beignet-2.jpg?v=__BUILD__" alt="Beignet pomme" loading="lazy" />
+          <img src="assets/images/creations/beignet-3.jpg?v=__BUILD__" alt="Beignet Nutella médaillon chocolat Ougot" loading="lazy" />
+          <img src="assets/images/creations/beignet-4.jpg?v=__BUILD__" alt="Beignet confiture sucre glace" loading="lazy" />
+          <img src="assets/images/creations/beignet-5.jpg?v=__BUILD__" alt="Beignet au sucre" loading="lazy" />
+        </div>
+        <button class="carousel-btn carousel-prev" id="c-prev" aria-label="Photo précédente">‹</button>
+        <button class="carousel-btn carousel-next" id="c-next" aria-label="Photo suivante">›</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+
+      <!-- Prix -->
+      <div class="prices">
+        <span class="price-tag">Beignet au sucre : <strong>3,00 €</strong></span>
+        <span class="price-tag">Nutella · Confiture · Pomme : <strong>3,50 €</strong></span>
+      </div>
+      <p class="same">✨ Mêmes prix que les années précédentes.</p>
+
+      <!-- 1. Quantité -->
+      <h2 class="section-t">1. Nombre de beignets</h2>
+      <p class="hint">Commande minimum : <strong>6 beignets</strong>.</p>
+      <div class="sizes" id="sizes">
+        <button type="button" class="size-opt" data-size="6">Boîte de 6</button>
+        <button type="button" class="size-opt" data-size="12">Boîte de 12</button>
+        <button type="button" class="size-opt" data-size="autre">Autre quantité</button>
+      </div>
+      <div id="autre-wrap" hidden>
+        <label class="lbl" for="autre-qty">Quantité souhaitée (min. 6) </label><br>
+        <input type="number" id="autre-qty" min="6" step="1" placeholder="ex. 15" />
+      </div>
+
+      <!-- 2. Parfums -->
+      <h2 class="section-t">2. Répartition des parfums</h2>
+      <p class="hint">Répartissez le nombre total de beignets entre les parfums.</p>
+      <div class="flavors" id="flavors">
+        <div class="flavor">
+          <div class="flavor-name">Sucre<small>3,00 € l'unité</small></div>
+          <div class="stepper"><button type="button" class="step-btn minus" data-f="sucre">−</button><span class="step-val" id="v-sucre">0</span><button type="button" class="step-btn plus" data-f="sucre">+</button></div>
+        </div>
+        <div class="flavor">
+          <div class="flavor-name">Nutella<small>3,50 € l'unité</small></div>
+          <div class="stepper"><button type="button" class="step-btn minus" data-f="nutella">−</button><span class="step-val" id="v-nutella">0</span><button type="button" class="step-btn plus" data-f="nutella">+</button></div>
+        </div>
+        <div class="flavor">
+          <div class="flavor-name">Confiture<small>3,50 € l'unité</small></div>
+          <div class="stepper"><button type="button" class="step-btn minus" data-f="confiture">−</button><span class="step-val" id="v-confiture">0</span><button type="button" class="step-btn plus" data-f="confiture">+</button></div>
+        </div>
+        <div class="flavor">
+          <div class="flavor-name">Pomme<small>3,50 € l'unité</small></div>
+          <div class="stepper"><button type="button" class="step-btn minus" data-f="pomme">−</button><span class="step-val" id="v-pomme">0</span><button type="button" class="step-btn plus" data-f="pomme">+</button></div>
+        </div>
+      </div>
+      <p class="repartition none" id="repartition">Choisissez d'abord le nombre de beignets.</p>
+
+      <!-- Total -->
+      <div class="total-box"><span>Total de votre boîte</span><strong id="total-prix">0,00 €</strong></div>
+
+      <!-- 3. Cacherout -->
+      <h2 class="section-t">3. Cacherout</h2>
+      <div class="chips" role="group" aria-label="Parvé ou halavi">
+        <input type="radio" id="k-parve" name="kosher" value="Parvé" checked><label for="k-parve">Parvé</label>
+        <input type="radio" id="k-halavi" name="kosher" value="Halavi"><label for="k-halavi">Halavi</label>
+      </div>
+
+      <!-- 4. Vos infos -->
+      <h2 class="section-t">4. Vos coordonnées</h2>
+      <p class="delay">🗓️ Commande à passer <strong>au minimum 5 jours à l'avance</strong>.</p>
+      <form class="infos" id="order-form" novalidate>
+        <div class="field"><label class="lbl" for="f-nom">Prénom & nom <span class="req">*</span></label><input type="text" id="f-nom" placeholder="Votre nom" required></div>
+        <div class="field"><label class="lbl" for="f-email">E-mail <span class="req">*</span></label><input type="email" id="f-email" placeholder="vous@exemple.com" required></div>
+        <div class="field"><label class="lbl" for="f-tel">Téléphone <span class="req">*</span></label><input type="tel" id="f-tel" placeholder="06 12 34 56 78" required></div>
+        <div class="field"><label class="lbl" for="f-date">Date de retrait / livraison <span class="req">*</span></label><input type="date" id="f-date" required></div>
+        <div class="field full"><label class="lbl">Mode de récupération <span class="req">*</span></label><div class="chips">
+          <input type="radio" id="r-retrait" name="reception" value="Retrait sur place" checked><label for="r-retrait">Retrait sur place</label>
+          <input type="radio" id="r-livr" name="reception" value="Livraison"><label for="r-livr">Livraison</label>
+        </div></div>
+        <div class="field full" id="addr-wrap" hidden><label class="lbl" for="f-addr">Adresse de livraison <span class="req">*</span></label><input type="text" id="f-addr" placeholder="N°, rue, code postal, ville"></div>
+        <p class="note" id="addr-note" hidden>🚚 Livraison à Paris et alentours (Levallois-Perret) : <strong>+10 €</strong> à régler à l'arrivée.</p>
+        <div class="field full"><label class="lbl" for="f-precisions">Précisions / allergies</label><textarea id="f-precisions" placeholder="Allergies, demandes particulières… (écrivez « aucune » si rien)"></textarea></div>
+        <button type="submit" class="send" id="send">Valider ma commande</button>
+        <p class="msg" id="msg" hidden></p>
+      </form>
+    </div>
+    <p class="foot">Une question ? <a href="tel:+33769652949">07 69 65 29 49</a> · <a href="https://www.instagram.com/ougot___/" target="_blank" rel="noopener">@ougot___</a></p>
+  </div>
+
+  <script>
+  (function(){
+    "use strict";
+    var ENDPOINT = "https://formsubmit.co/ajax/ougot27@gmail.com";
+    var PRIX = { sucre:3.00, nutella:3.50, confiture:3.50, pomme:3.50 };
+    var qty = { sucre:0, nutella:0, confiture:0, pomme:0 };
+    var total = 0; // nombre total de beignets voulu
+
+    /* ---------- Carrousel ---------- */
+    (function(){
+      var track=document.getElementById("carousel-track");
+      var slides=track.children.length;
+      var dots=document.getElementById("carousel-dots");
+      var i=0;
+      for(var d=0;d<slides;d++){(function(d){var b=document.createElement("button");b.className="carousel-dot"+(d===0?" is-active":"");b.setAttribute("aria-label","Photo "+(d+1));b.addEventListener("click",function(){i=d;upd();});dots.appendChild(b);})(d);}
+      function upd(){track.style.transform="translateX(-"+(i*100)+"%)";dots.querySelectorAll(".carousel-dot").forEach(function(x,n){x.classList.toggle("is-active",n===i);});}
+      document.getElementById("c-prev").addEventListener("click",function(){i=(i-1+slides)%slides;upd();});
+      document.getElementById("c-next").addEventListener("click",function(){i=(i+1)%slides;upd();});
+      var x0=null;
+      track.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;},{passive:true});
+      track.addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){if(dx<0)i=(i+1)%slides;else i=(i-1+slides)%slides;upd();}x0=null;});
+    })();
+
+    /* ---------- Quantité (6 / 12 / autre) ---------- */
+    var sizeBtns=document.querySelectorAll(".size-opt");
+    var autreWrap=document.getElementById("autre-wrap");
+    var autreQty=document.getElementById("autre-qty");
+    sizeBtns.forEach(function(b){
+      b.addEventListener("click",function(){
+        sizeBtns.forEach(function(o){o.classList.remove("is-active");});
+        b.classList.add("is-active");
+        if(b.dataset.size==="autre"){ autreWrap.hidden=false; total=parseInt(autreQty.value,10)||0; autreQty.focus(); }
+        else { autreWrap.hidden=true; total=parseInt(b.dataset.size,10); }
+        clampQty(); render();
+      });
+    });
+    autreQty.addEventListener("input",function(){ total=parseInt(autreQty.value,10)||0; clampQty(); render(); });
+
+    /* ---------- Steppers parfums ---------- */
+    document.querySelectorAll(".step-btn").forEach(function(btn){
+      btn.addEventListener("click",function(){
+        var f=btn.dataset.f;
+        if(btn.classList.contains("plus")){ if(sum()<total) qty[f]++; }
+        else { if(qty[f]>0) qty[f]--; }
+        render();
+      });
+    });
+
+    function sum(){ return qty.sucre+qty.nutella+qty.confiture+qty.pomme; }
+    function clampQty(){ // si on réduit le total sous la somme répartie, on remet à zéro la répartition
+      if(sum()>total){ qty={sucre:0,nutella:0,confiture:0,pomme:0}; }
+    }
+    function prix(){ return qty.sucre*PRIX.sucre + qty.nutella*PRIX.nutella + qty.confiture*PRIX.confiture + qty.pomme*PRIX.pomme; }
+    function fmt(n){ return n.toFixed(2).replace(".",",")+" €"; }
+
+    var rep=document.getElementById("repartition");
+    var sendBtn=document.getElementById("send");
+    function render(){
+      ["sucre","nutella","confiture","pomme"].forEach(function(f){ document.getElementById("v-"+f).textContent=qty[f]; });
+      document.getElementById("total-prix").textContent=fmt(prix());
+      // boutons + désactivés si tout est réparti
+      var full=sum()>=total && total>0;
+      document.querySelectorAll(".step-btn.plus").forEach(function(b){ b.disabled=full; });
+      document.querySelectorAll(".step-btn.minus").forEach(function(b){ b.disabled=qty[b.dataset.f]<=0; });
+      // message de répartition
+      if(!total || total<6){ rep.className="repartition none"; rep.textContent="Choisissez d'abord le nombre de beignets (min. 6)."; }
+      else if(sum()<total){ rep.className="repartition todo"; rep.textContent="Il reste "+(total-sum())+" beignet(s) à répartir sur "+total+"."; }
+      else { rep.className="repartition ok"; rep.textContent="✓ Répartition complète : "+total+" beignets."; }
+    }
+
+    /* ---------- Date minimum 5 jours ---------- */
+    var dmin=new Date(); dmin.setDate(dmin.getDate()+5);
+    var minStr=dmin.getFullYear()+"-"+String(dmin.getMonth()+1).padStart(2,"0")+"-"+String(dmin.getDate()).padStart(2,"0");
+    var frMin=String(dmin.getDate()).padStart(2,"0")+"/"+String(dmin.getMonth()+1).padStart(2,"0")+"/"+dmin.getFullYear();
+    var dateEl=document.getElementById("f-date"); dateEl.min=minStr;
+    dateEl.addEventListener("change",function(){ if(dateEl.value && dateEl.value<minStr){ dateEl.value=""; showMsg(false,"🗓️ Date trop proche : délai minimum de 5 jours. Première date possible : le "+frMin+"."); } });
+
+    /* ---------- Livraison ---------- */
+    var addrWrap=document.getElementById("addr-wrap"), addrNote=document.getElementById("addr-note"), addrInput=document.getElementById("f-addr");
+    document.querySelectorAll('input[name="reception"]').forEach(function(r){ r.addEventListener("change",function(){ var l=document.getElementById("r-livr").checked; addrWrap.hidden=!l; addrNote.hidden=!l; }); });
+
+    /* ---------- Validation + envoi ---------- */
+    var msg=document.getElementById("msg");
+    function showMsg(ok,t){ msg.hidden=false; msg.className="msg "+(ok?"ok":"err"); msg.innerHTML=t; msg.scrollIntoView({behavior:"smooth",block:"center"}); }
+
+    document.getElementById("order-form").addEventListener("submit",function(e){
+      e.preventDefault();
+      if(!total || total<6) return showMsg(false,"Choisissez d'abord le nombre de beignets (minimum 6).");
+      if(sum()!==total) return showMsg(false,"La répartition des parfums doit faire exactement "+total+" beignets (actuellement "+sum()+").");
+      var nom=document.getElementById("f-nom").value.trim();
+      var email=document.getElementById("f-email").value.trim();
+      var tel=document.getElementById("f-tel").value.trim();
+      var livr=document.getElementById("r-livr").checked;
+      if(!nom) return showMsg(false,"Merci d'indiquer votre prénom & nom.");
+      if(!/.+@.+\..+/.test(email)) return showMsg(false,"Merci d'indiquer un e-mail valide.");
+      if(!tel) return showMsg(false,"Merci d'indiquer votre téléphone.");
+      if(!dateEl.value) return showMsg(false,"Merci de choisir une date.");
+      if(dateEl.value<minStr){ return showMsg(false,"🗓️ Date trop proche : délai minimum de 5 jours (première date : "+frMin+")."); }
+      if(livr && !addrInput.value.trim()) return showMsg(false,"Merci d'indiquer l'adresse de livraison.");
+
+      var kosher=(document.querySelector('input[name="kosher"]:checked')||{}).value||"";
+      var recep=(document.querySelector('input[name="reception"]:checked')||{}).value||"";
+      var parfums=[];
+      ["sucre","nutella","confiture","pomme"].forEach(function(f){ if(qty[f]>0) parfums.push(qty[f]+" × "+f.charAt(0).toUpperCase()+f.slice(1)); });
+
+      var payload={
+        _subject:"🍩 Commande Beignets Hanouka — Ougot",
+        _template:"table", _captcha:"false",
+        "Produit":"Beignets de Hanouka",
+        "Nombre total":total+" beignets",
+        "Répartition":parfums.join(" · "),
+        "Cacherout":kosher,
+        "Prix total":fmt(prix()),
+        "Mode de récupération":recep,
+        "Frais de livraison":livr?"10 € (à régler à l'arrivée)":"—",
+        "Adresse de livraison":livr?(addrInput.value.trim()||"—"):"—",
+        "Date souhaitée":dateEl.value,
+        "Prénom & nom":nom, "E-mail":email, "Téléphone":tel,
+        "Précisions":document.getElementById("f-precisions").value.trim()||"—"
+      };
+      sendBtn.disabled=true; var orig=sendBtn.textContent; sendBtn.textContent="Envoi…";
+      fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)})
+        .then(function(r){return r.json().catch(function(){return {};});})
+        .then(function(){ showMsg(true,"✓ Merci ! Votre commande de beignets est enregistrée. Nous vous recontactons pour la confirmer. Réglement au retrait / à la livraison."); sendBtn.textContent="Commande envoyée ✓"; })
+        .catch(function(){ sendBtn.disabled=false; sendBtn.textContent=orig; showMsg(false,"Un souci d'envoi. Réessayez, ou appelez le 07 69 65 29 49."); });
+    });
+
+    render();
+  })();
+  </script>
+  <script src="status.js?v=__BUILD__"></script>
+</body>
+</html>

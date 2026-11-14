@@ -88,6 +88,65 @@
     return html;
   }
 
+  function beignetCard(b) {
+    var imgs = b.images || [];
+    var lien = b.lien || "beignets.html";
+    var html = '<article class="cake reveal is-visible beignet-card" data-sc-id="beignets">';
+    html += '<div class="cake-media"><div class="carousel"><div class="carousel-track">';
+    imgs.forEach(function (u) { html += '<img src="' + esc(u) + '" alt="' + esc(b.nom) + '" loading="lazy" />'; });
+    html += '</div>';
+    if (imgs.length > 1) {
+      html += '<button type="button" class="carousel-btn carousel-prev" aria-label="Photo précédente">‹</button>';
+      html += '<button type="button" class="carousel-btn carousel-next" aria-label="Photo suivante">›</button>';
+      html += '<div class="carousel-dots"></div>';
+    }
+    html += '</div></div>';
+    html += '<div class="cake-body">';
+    html += '<div class="cake-head"><h3>' + esc(b.nom) + '</h3><span class="price">dès 3&nbsp;€</span></div>';
+    html += '<p class="cake-desc">' + esc(b.description) + '</p>';
+    html += '<div class="cake-actions"><a href="' + esc(lien) + '" class="btn btn-dark btn-block cake-beignet-link">Composer ma boîte 🍩</a></div>';
+    html += '</div></article>';
+    return html;
+  }
+
+  function initCarousels(root) {
+    (root || document).querySelectorAll(".carousel").forEach(function (car) {
+      if (car.dataset.scBound) return;
+      car.dataset.scBound = "1";
+      var track = car.querySelector(".carousel-track");
+      if (!track) return;
+      var slides = track.children.length;
+      var dotsC = car.querySelector(".carousel-dots");
+      var i = 0;
+      function upd() {
+        track.style.transform = "translateX(-" + (i * 100) + "%)";
+        if (dotsC) dotsC.querySelectorAll(".carousel-dot").forEach(function (x, n) { x.classList.toggle("is-active", n === i); });
+      }
+      if (dotsC) {
+        for (var d = 0; d < slides; d++) {
+          (function (d) {
+            var b = document.createElement("button");
+            b.type = "button"; b.className = "carousel-dot" + (d === 0 ? " is-active" : "");
+            b.setAttribute("aria-label", "Photo " + (d + 1));
+            b.addEventListener("click", function () { i = d; upd(); });
+            dotsC.appendChild(b);
+          })(d);
+        }
+      }
+      var prev = car.querySelector(".carousel-prev"), next = car.querySelector(".carousel-next");
+      if (prev) prev.addEventListener("click", function () { i = (i - 1 + slides) % slides; upd(); });
+      if (next) next.addEventListener("click", function () { i = (i + 1) % slides; upd(); });
+      var x0 = null;
+      track.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener("touchend", function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) { i = dx < 0 ? (i + 1) % slides : (i - 1 + slides) % slides; upd(); }
+        x0 = null;
+      });
+    });
+  }
+
   function render(data) {
     if (!data) return;
 
@@ -95,12 +154,14 @@
     var grid = document.getElementById("sc-gateaux");
     if (grid) {
       var out = "";
+      if (data.beignets && !data.beignets.masque) out += beignetCard(data.beignets);
       (data.gateaux || []).forEach(function (p) {
         if (!p || p.masque) return;
         out += cakeCard(p);
       });
       if (data.cookies && !data.cookies.masque) out += cookieCard(data.cookies);
       grid.innerHTML = out;
+      initCarousels(grid);
     }
 
     // --- Plateaux ---

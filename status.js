@@ -17,7 +17,7 @@ window.OUGOT_STATUS = {
 
   function disableOrderControls(root) {
     var sel = ".cake-order, .cake-pay, a.btn-pay, #btn-online, #btn-onsite, .send," +
-              " a[href^='devis.html'], a[href^='commande.html'], .add-to-cart";
+              " a[href^='devis.html'], a[href^='commande.html'], a[href^='beignets.html'], .add-to-cart";
     (root || document).querySelectorAll(sel).forEach(function (b) {
       b.style.pointerEvents = "none";
       b.style.opacity = ".45";

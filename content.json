@@ -139,6 +139,19 @@
       { "nom": "3 chocolats", "cacherout": ["Halavi"] }
     ]
   },
+  "beignets": {
+    "nom": "Beignets de Hanouka",
+    "description": "Sucre, Nutella, confiture, pomme — composez votre boîte sur mesure (parvé ou halavi). Dès 3 € le beignet.",
+    "masque": false,
+    "lien": "beignets.html",
+    "images": [
+      "assets/images/creations/beignet-1.jpg",
+      "assets/images/creations/beignet-2.jpg",
+      "assets/images/creations/beignet-3.jpg",
+      "assets/images/creations/beignet-4.jpg",
+      "assets/images/creations/beignet-5.jpg"
+    ]
+  },
   "plateaux": {
     "titre": "Plateaux desserts",
     "intro": "Un assortiment généreux de nos pâtisseries phares, réparties en portions individuelles pour régaler tous vos convives.",
